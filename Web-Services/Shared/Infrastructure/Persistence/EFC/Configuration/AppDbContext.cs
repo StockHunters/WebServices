@@ -4,6 +4,7 @@ using EntityFrameworkCore.CreatedUpdatedDate.Extensions;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using Microsoft.EntityFrameworkCore;
 using Web_Services.ClientManagement.Domain.Model.Aggregates;
+using Web_Services.ProductManagement.Domain.Model.Aggregates;
 
 namespace Web_Services.Shared.Infrastructure.Persistence.EFC.Configuration;
 
@@ -39,6 +40,12 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         builder.Entity<Client>().Property(f => f.Dni).IsRequired();
         builder.Entity<Client>().Property(f => f.Status).ValueGeneratedOnAdd();
         builder.Entity<Client>().Property(f => f.Company).IsRequired();
+        
+        builder.Entity<Product>().HasKey(f => f.Id);
+        builder.Entity<Product>().Property(f => f.Name).IsRequired();
+        builder.Entity<Product>().Property(f => f.ImageUrl).IsRequired();
+        builder.Entity<Product>().Property(f => f.Stock).IsRequired();
+        builder.Entity<Product>().Property(f => f.CategoryId).IsRequired();
         
         builder.UseSnakeCaseNamingConvention();
     }
