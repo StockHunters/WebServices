@@ -4,7 +4,7 @@ using EntityFrameworkCore.CreatedUpdatedDate.Extensions;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using Microsoft.EntityFrameworkCore;
 using Web_Services.ClientManagement.Domain.Model.Aggregates;
-using Web_Services.ProductManagement.Domain.Model.Aggregates;
+using Web_Services.InventoryManagement.Domain.Model.Aggregates;
 
 namespace Web_Services.Shared.Infrastructure.Persistence.EFC.Configuration;
 
@@ -46,6 +46,12 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         builder.Entity<Product>().Property(f => f.ImageUrl).IsRequired();
         builder.Entity<Product>().Property(f => f.Stock).IsRequired();
         builder.Entity<Product>().Property(f => f.CategoryId).IsRequired();
+        
+        builder.Entity<ProductPrice>().HasKey(f => f.Id);
+        builder.Entity<ProductPrice>().Property(f => f.ProductId).IsRequired();
+        builder.Entity<ProductPrice>().Property(f => f.Price).IsRequired();
+        builder.Entity<ProductPrice>().Property(f => f.Discount).IsRequired();
+        builder.Entity<ProductPrice>().Property(f => f.EffectiveDate).IsRequired();
         
         builder.UseSnakeCaseNamingConvention();
     }
