@@ -5,6 +5,11 @@ using Web_Services.ClientManagement.Application.QueryServices;
 using Web_Services.ClientManagement.Domain.Repositories;
 using Web_Services.ClientManagement.Domain.Services;
 using Web_Services.ClientManagement.Infrastructure.Repositories;
+using Web_Services.ProductManagement.Application.Internal.CommandServices;
+using Web_Services.ProductManagement.Application.Internal.QueryServices;
+using Web_Services.ProductManagement.Domain.Repositories;
+using Web_Services.ProductManagement.Domain.Services;
+using Web_Services.ProductManagement.Infrastructure.Repositories;
 using Web_Services.Shared.Domain.Repositories;
 using Web_Services.Shared.Infrastructure.Interfaces.ASP.Configuration;
 using Web_Services.Shared.Infrastructure.Persistence.EFC.Configuration;
@@ -66,6 +71,10 @@ builder.Services.AddScoped<IFavoriteSourceQueryService, FavoriteSourceQueryServi
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IClientCommandService, ClientCommandService>();
 builder.Services.AddScoped<IClientQueryService, ClientQueryService>();
+
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProductCommandService, ProductCommandService>();
+builder.Services.AddScoped<IProductQueryService, ProductQueryService>();
 
 var app = builder.Build();
 
