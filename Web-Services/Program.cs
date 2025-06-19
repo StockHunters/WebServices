@@ -1,15 +1,24 @@
 
 using Microsoft.EntityFrameworkCore;
+
 using Web_Services.ClientManagement.Application.CommandServices;
 using Web_Services.ClientManagement.Application.QueryServices;
 using Web_Services.ClientManagement.Domain.Repositories;
 using Web_Services.ClientManagement.Domain.Services;
 using Web_Services.ClientManagement.Infrastructure.Repositories;
+
 using Web_Services.InventoryManagement.Application.Internal.CommandServices;
 using Web_Services.InventoryManagement.Application.Internal.QueryServices;
 using Web_Services.InventoryManagement.Domain.Repositories;
 using Web_Services.InventoryManagement.Domain.Services;
 using Web_Services.InventoryManagement.Infrastructure.Repositories;
+
+using Web_Services.Procurement.Application.Internal.CommandServices;
+using Web_Services.Procurement.Application.Internal.QueryServices;
+using Web_Services.Procurement.Domain.Repositories;
+using Web_Services.Procurement.Domain.Services;
+using Web_Services.Procurement.Infrastructure.Repositories;
+
 using Web_Services.Shared.Domain.Repositories;
 using Web_Services.Shared.Infrastructure.Interfaces.ASP.Configuration;
 using Web_Services.Shared.Infrastructure.Persistence.EFC.Configuration;
@@ -79,6 +88,26 @@ builder.Services.AddScoped<IProductQueryService, ProductQueryService>();
 builder.Services.AddScoped<IProductPriceRepository, ProductPriceRepository>();
 builder.Services.AddScoped<IProductPriceCommandService, ProductPriceCommandService>();
 builder.Services.AddScoped<IProductPriceQueryService, ProductPriceQueryService>();
+
+builder.Services.AddScoped<IProductSupplierRepository, ProductSupplierRepository>();
+builder.Services.AddScoped<IProductSupplierCommandService, ProductSupplierCommandService>();
+builder.Services.AddScoped<IProductSupplierQueryService, ProductSupplierQueryService>();
+
+builder.Services.AddScoped<IPurchaseRepository, PurchaseRepository>();
+builder.Services.AddScoped<IPurchaseCommandService, PurchaseCommandService>();
+builder.Services.AddScoped<IPurchaseQueryService, PurchaseQueryService>();
+
+builder.Services.AddScoped<IPurchaseOrderRepository, PurchaseOrderRepository>();
+builder.Services.AddScoped<IPurchaseOrderCommandService, PurchaseOrderCommandService>();
+builder.Services.AddScoped<IPurchaseOrderQueryService, PurchaseOrderQueryService>();
+
+builder.Services.AddScoped<IPurchaseOrderItemRepository, PurchaseOrderItemRepository>();
+builder.Services.AddScoped<IPurchaseOrderItemCommandService, PurchaseOrderItemCommandService>();
+builder.Services.AddScoped<IPurchaseOrderItemQueryService, PurchaseOrderItemQueryService>();
+
+builder.Services.AddScoped<ILotRepository, LotRepository>();
+builder.Services.AddScoped<ILotCommandService, LotCommandService>();
+builder.Services.AddScoped<ILotQueryService, LotQueryService>();
 
 var app = builder.Build();
 
