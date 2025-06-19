@@ -84,6 +84,10 @@ builder.Services.AddScoped<ISaleRepository, SaleRepository>();
 builder.Services.AddScoped<ISaleCommandService, SaleCommandService>();
 builder.Services.AddScoped<ISaleQueryService, SaleQueryService>();
 
+builder.Services.AddScoped<ILocationRepository, LocationRepository>();
+builder.Services.AddScoped<ILocationCommandService, LocationCommandService>();
+builder.Services.AddScoped<ILocationQueryService, LocationQueryService>();
+
 var app = builder.Build();
 
 // Verify Database Objects are created

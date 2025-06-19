@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Web_Services.ClientManagement.Domain.Model.Aggregates;
 using Web_Services.ClientManagement.Domain.Model.ValueObjects;
 using Web_Services.InventoryManagement.Domain.Model.Aggregates;
+using Web_Services.InventoryManagement.Domain.Model.ValueObjects;
 
 namespace Web_Services.Shared.Infrastructure.Persistence.EFC.Configuration;
 
@@ -79,6 +80,20 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
                 v => new SaleStatus(v)    // bool → SaleStatus
             )
             .IsRequired();
+        
+        builder.Entity<Location>().HasKey(f => f.Id);
+        builder.Entity<Location>().Property(f => f.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<Location>().Property(f => f.OrganizationId).IsRequired();
+        builder.Entity<Location>().Property(f => f.Name).IsRequired();
+        builder.Entity<Location>().OwnsOne(f => f.Address, n =>
+        {
+            n.WithOwner().HasForeignKey("Id"); // Asegura que se usa la misma PK de Location
+            n.Property(f => f.Address).IsRequired();
+            n.Property(f => f.City).IsRequired();
+            n.Property(f => f.Country).IsRequired();
+        });
+
+        
 
         
         builder.UseSnakeCaseNamingConvention();
