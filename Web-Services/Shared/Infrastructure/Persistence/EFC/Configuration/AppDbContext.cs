@@ -4,6 +4,7 @@ using EntityFrameworkCore.CreatedUpdatedDate.Extensions;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using Microsoft.EntityFrameworkCore;
 using Web_Services.ClientManagement.Domain.Model.Aggregates;
+using Web_Services.ClientManagement.Domain.Model.ValueObjects;
 using Web_Services.InventoryManagement.Domain.Model.Aggregates;
 
 namespace Web_Services.Shared.Infrastructure.Persistence.EFC.Configuration;
@@ -52,6 +53,33 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         builder.Entity<ProductPrice>().Property(f => f.Price).IsRequired();
         builder.Entity<ProductPrice>().Property(f => f.Discount).IsRequired();
         builder.Entity<ProductPrice>().Property(f => f.EffectiveDate).IsRequired();
+        
+        builder.Entity<Sale>().HasKey(f => f.Id);
+        builder.Entity<Sale>().Property(f => f.ProductId).IsRequired();
+        builder.Entity<Sale>().Property(f => f.ClientId).IsRequired();
+        builder.Entity<Sale>().Property(f => f.UserId).IsRequired();
+        builder.Entity<Sale>().Property(f => f.LocationId).IsRequired();
+        builder.Entity<Sale>().Property(f => f.Date)
+            .HasConversion(
+                v => v.Date,          // SaleDate → DateTime
+                v => new SaleDate(v)   // DateTime → SaleDate
+            )
+            .IsRequired();
+
+        builder.Entity<Sale>().Property(f => f.Quantity)
+            .HasConversion(
+                v => v.Quantity,              // SaleQuantity → int
+                v => new SaleQuantity(v)   // int → SaleQuantity
+            )
+            .IsRequired();
+
+        builder.Entity<Sale>().Property(f => f.Status)
+            .HasConversion(
+                v => v.Status,             // SaleStatus → bool
+                v => new SaleStatus(v)    // bool → SaleStatus
+            )
+            .IsRequired();
+
         
         builder.UseSnakeCaseNamingConvention();
     }

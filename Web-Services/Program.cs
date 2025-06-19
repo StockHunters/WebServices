@@ -80,6 +80,10 @@ builder.Services.AddScoped<IProductPriceRepository, ProductPriceRepository>();
 builder.Services.AddScoped<IProductPriceCommandService, ProductPriceCommandService>();
 builder.Services.AddScoped<IProductPriceQueryService, ProductPriceQueryService>();
 
+builder.Services.AddScoped<ISaleRepository, SaleRepository>();
+builder.Services.AddScoped<ISaleCommandService, SaleCommandService>();
+builder.Services.AddScoped<ISaleQueryService, SaleQueryService>();
+
 var app = builder.Build();
 
 // Verify Database Objects are created
