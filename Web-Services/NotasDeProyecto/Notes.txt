@@ -1,0 +1,4 @@
+Categories
+Locations
+Product_Locations
+Inventory_Adjustments
