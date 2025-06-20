@@ -92,6 +92,18 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
             n.Property(f => f.City).IsRequired();
             n.Property(f => f.Country).IsRequired();
         });
+        
+        builder.Entity<ProductLocation>().HasKey(f => f.Id);
+        builder.Entity<ProductLocation>().Property(f => f.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<ProductLocation>().Property(f => f.ProductId).IsRequired();
+        builder.Entity<ProductLocation>().Property(f => f.LocationId).IsRequired();
+        builder.Entity<ProductLocation>().Property(f => f.Stock).IsRequired();
+
+        builder.Entity<Category>().HasKey(f => f.Id);
+        builder.Entity<Category>().Property(f => f.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<Category>().Property(f => f.Name).IsRequired();
+        builder.Entity<Category>().Property(f => f.Description).IsRequired();
+        
 
         
 

@@ -88,6 +88,14 @@ builder.Services.AddScoped<ILocationRepository, LocationRepository>();
 builder.Services.AddScoped<ILocationCommandService, LocationCommandService>();
 builder.Services.AddScoped<ILocationQueryService, LocationQueryService>();
 
+builder.Services.AddScoped<IProductLocationRepository, ProductLocationRepository>();
+builder.Services.AddScoped<IProductLocationCommandService, ProductLocationCommandService>();
+builder.Services.AddScoped<IProductLocationQueryService, ProductLocationQueryService>();
+
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<ICategoryCommandService, CategoryCommandService>();
+builder.Services.AddScoped<ICategoryQueryService, CategoryQueryService>();
+
 var app = builder.Build();
 
 // Verify Database Objects are created

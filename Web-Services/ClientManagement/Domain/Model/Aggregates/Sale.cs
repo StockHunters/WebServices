@@ -1,5 +1,6 @@
 ﻿using Web_Services.ClientManagement.Domain.Model.Commands;
 using Web_Services.ClientManagement.Domain.Model.ValueObjects;
+using Web_Services.InventoryManagement.Domain.Model.Aggregates;
 
 namespace Web_Services.ClientManagement.Domain.Model.Aggregates;
 
@@ -13,6 +14,10 @@ public partial class Sale
     public int ClientId { get; set; }
     public int UserId { get; set; }
     public int LocationId { get; set; }
+    
+    public Product Product { get; set; }
+    public Client Client { get; set; }
+    public Location Location { get; set; }
 
     public Sale()
     {
