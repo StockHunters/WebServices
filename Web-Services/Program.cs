@@ -96,6 +96,10 @@ builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ICategoryCommandService, CategoryCommandService>();
 builder.Services.AddScoped<ICategoryQueryService, CategoryQueryService>();
 
+builder.Services.AddScoped<IInventoryAdjustmentRepository, InventoryAdjustmentRepository>();
+builder.Services.AddScoped<IInventoryAdjustmentCommandService, InventoryAdjustmentCommandService>();
+builder.Services.AddScoped<IInventoryAdjustmentQueryService, InventoryAdjustmentQueryService>();
+
 var app = builder.Build();
 
 // Verify Database Objects are created

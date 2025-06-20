@@ -1,12 +1,12 @@
 
 using Web_Services.Shared.Infrastructure.Persistence.EFC.Configuration.Extensions;
 using EntityFrameworkCore.CreatedUpdatedDate.Extensions;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
+
 using Microsoft.EntityFrameworkCore;
 using Web_Services.ClientManagement.Domain.Model.Aggregates;
 using Web_Services.ClientManagement.Domain.Model.ValueObjects;
 using Web_Services.InventoryManagement.Domain.Model.Aggregates;
-using Web_Services.InventoryManagement.Domain.Model.ValueObjects;
+
 
 namespace Web_Services.Shared.Infrastructure.Persistence.EFC.Configuration;
 
@@ -104,7 +104,14 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         builder.Entity<Category>().Property(f => f.Name).IsRequired();
         builder.Entity<Category>().Property(f => f.Description).IsRequired();
         
-
+        builder.Entity<InventoryAdjustment>().HasKey(f => f.Id);
+        builder.Entity<InventoryAdjustment>().Property(f => f.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<InventoryAdjustment>().Property(f => f.ProductId).IsRequired();
+        builder.Entity<InventoryAdjustment>().Property(f => f.LocationId).IsRequired();
+        builder.Entity<InventoryAdjustment>().Property(f => f.Quantity).IsRequired();
+        builder.Entity<InventoryAdjustment>().Property(f => f.Reason).IsRequired();
+        builder.Entity<InventoryAdjustment>().Property(f => f.UserId).IsRequired();
+        builder.Entity<InventoryAdjustment>().Property(f => f.AdjustmentDate).IsRequired();
         
 
         
