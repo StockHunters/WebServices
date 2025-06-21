@@ -5,10 +5,25 @@ using Web_Services.ClientManagement.Application.QueryServices;
 using Web_Services.ClientManagement.Domain.Repositories;
 using Web_Services.ClientManagement.Domain.Services;
 using Web_Services.ClientManagement.Infrastructure.Repositories;
+using Web_Services.InventoryManagement.Application.Internal.CommandServices;
+using Web_Services.InventoryManagement.Application.Internal.QueryServices;
+using Web_Services.InventoryManagement.Domain.Repositories;
+using Web_Services.InventoryManagement.Domain.Services;
+using Web_Services.InventoryManagement.Infrastructure.Repositories;
+using Web_Services.OrganizationManagement.Application.Internal.CommandServices;
+using Web_Services.OrganizationManagement.Application.Internal.QueryServices;
+using Web_Services.OrganizationManagement.Domain.Repositories;
+using Web_Services.OrganizationManagement.Domain.Services;
+using Web_Services.OrganizationManagement.Infrastructure.Persistence.EFC.Repositories;
 using Web_Services.Shared.Domain.Repositories;
 using Web_Services.Shared.Infrastructure.Interfaces.ASP.Configuration;
 using Web_Services.Shared.Infrastructure.Persistence.EFC.Configuration;
 using Web_Services.Shared.Infrastructure.Persistence.EFC.Repositories;
+using Web_Services.SystemManagement.Application.Internal.CommandServices;
+using Web_Services.SystemManagement.Application.Internal.QueryServices;
+using Web_Services.SystemManagement.Domain.Repositories;
+using Web_Services.SystemManagement.Domain.Services;
+using Web_Services.SystemManagement.Infrastructure.Persistence.EFC.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -66,6 +81,46 @@ builder.Services.AddScoped<IFavoriteSourceQueryService, FavoriteSourceQueryServi
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IClientCommandService, ClientCommandService>();
 builder.Services.AddScoped<IClientQueryService, ClientQueryService>();
+
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProductCommandService, ProductCommandService>();
+builder.Services.AddScoped<IProductQueryService, ProductQueryService>();
+
+builder.Services.AddScoped<IProductPriceRepository, ProductPriceRepository>();
+builder.Services.AddScoped<IProductPriceCommandService, ProductPriceCommandService>();
+builder.Services.AddScoped<IProductPriceQueryService, ProductPriceQueryService>();
+
+builder.Services.AddScoped<ISaleRepository, SaleRepository>();
+builder.Services.AddScoped<ISaleCommandService, SaleCommandService>();
+builder.Services.AddScoped<ISaleQueryService, SaleQueryService>();
+
+builder.Services.AddScoped<ILocationRepository, LocationRepository>();
+builder.Services.AddScoped<ILocationCommandService, LocationCommandService>();
+builder.Services.AddScoped<ILocationQueryService, LocationQueryService>();
+
+builder.Services.AddScoped<IProductLocationRepository, ProductLocationRepository>();
+builder.Services.AddScoped<IProductLocationCommandService, ProductLocationCommandService>();
+builder.Services.AddScoped<IProductLocationQueryService, ProductLocationQueryService>();
+
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<ICategoryCommandService, CategoryCommandService>();
+builder.Services.AddScoped<ICategoryQueryService, CategoryQueryService>();
+
+builder.Services.AddScoped<IInventoryAdjustmentRepository, InventoryAdjustmentRepository>();
+builder.Services.AddScoped<IInventoryAdjustmentCommandService, InventoryAdjustmentCommandService>();
+builder.Services.AddScoped<IInventoryAdjustmentQueryService, InventoryAdjustmentQueryService>();
+
+builder.Services.AddScoped<IPlanRepository, PlanRepository>();
+builder.Services.AddScoped<IPlanCommandService, PlanCommandService>();
+builder.Services.AddScoped<IPlanQueryService, PlanQueryService>();
+
+builder.Services.AddScoped<IOrganizationRepository, OrganizationRepository>();
+builder.Services.AddScoped<IOrganizationCommandService, OrganizationCommandService>();
+builder.Services.AddScoped<IOrganizationQueryService, OrganizationQueryService>();
+
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserCommandService, UserCommandService>();
+builder.Services.AddScoped<IUserQueryService,UserQueryService>();
 
 var app = builder.Build();
 
