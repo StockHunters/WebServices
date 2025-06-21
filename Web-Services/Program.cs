@@ -10,6 +10,11 @@ using Web_Services.InventoryManagement.Application.Internal.QueryServices;
 using Web_Services.InventoryManagement.Domain.Repositories;
 using Web_Services.InventoryManagement.Domain.Services;
 using Web_Services.InventoryManagement.Infrastructure.Repositories;
+using Web_Services.OrganizationManagement.Application.Internal.CommandServices;
+using Web_Services.OrganizationManagement.Application.Internal.QueryServices;
+using Web_Services.OrganizationManagement.Domain.Repositories;
+using Web_Services.OrganizationManagement.Domain.Services;
+using Web_Services.OrganizationManagement.Infrastructure.Persistence.EFC.Repositories;
 using Web_Services.Shared.Domain.Repositories;
 using Web_Services.Shared.Infrastructure.Interfaces.ASP.Configuration;
 using Web_Services.Shared.Infrastructure.Persistence.EFC.Configuration;
@@ -99,6 +104,14 @@ builder.Services.AddScoped<ICategoryQueryService, CategoryQueryService>();
 builder.Services.AddScoped<IInventoryAdjustmentRepository, InventoryAdjustmentRepository>();
 builder.Services.AddScoped<IInventoryAdjustmentCommandService, InventoryAdjustmentCommandService>();
 builder.Services.AddScoped<IInventoryAdjustmentQueryService, InventoryAdjustmentQueryService>();
+
+builder.Services.AddScoped<IPlanRepository, PlanRepository>();
+builder.Services.AddScoped<IPlanCommandService, PlanCommandService>();
+builder.Services.AddScoped<IPlanQueryService, PlanQueryService>();
+
+builder.Services.AddScoped<IOrganizationRepository, OrganizationRepository>();
+builder.Services.AddScoped<IOrganizationCommandService, OrganizationCommandService>();
+builder.Services.AddScoped<IOrganizationQueryService, OrganizationQueryService>();
 
 var app = builder.Build();
 

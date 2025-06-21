@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Web_Services.ClientManagement.Domain.Model.Aggregates;
 using Web_Services.ClientManagement.Domain.Model.ValueObjects;
 using Web_Services.InventoryManagement.Domain.Model.Aggregates;
+using Web_Services.OrganizationManagement.Domain.Model.Aggregates;
 
 
 namespace Web_Services.Shared.Infrastructure.Persistence.EFC.Configuration;
@@ -113,7 +114,18 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         builder.Entity<InventoryAdjustment>().Property(f => f.UserId).IsRequired();
         builder.Entity<InventoryAdjustment>().Property(f => f.AdjustmentDate).IsRequired();
         
-
+        builder.Entity<Plan>().HasKey(f => f.Id);
+        builder.Entity<Plan>().Property(f => f.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<Plan>().Property(f => f.Name).IsRequired();
+        builder.Entity<Plan>().Property(f => f.Description).IsRequired();
+        builder.Entity<Plan>().Property(f => f.Feature).IsRequired();
+        builder.Entity<Plan>().Property(f => f.Price).IsRequired();
+        
+        builder.Entity<Organization>().HasKey(f => f.Id);
+        builder.Entity<Organization>().Property(f => f.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<Organization>().Property(f => f.Name).IsRequired();
+        builder.Entity<Organization>().Property(f => f.ContactEmail).IsRequired();
+        builder.Entity<Organization>().Property(f => f.PlanId).IsRequired();
         
         builder.UseSnakeCaseNamingConvention();
     }
