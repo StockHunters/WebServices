@@ -18,4 +18,10 @@
         <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="8.1.4" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Reporting\Domain\Model\ValueObjects\" />
+      <Folder Include="Reporting\Domain\Services\" />
+      <Folder Include="SystemManagement\Domain\Model\ValueObjects\" />
+    </ItemGroup>
+
 </Project>

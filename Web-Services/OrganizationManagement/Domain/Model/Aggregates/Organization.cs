@@ -1,5 +1,4 @@
 ﻿using Web_Services.OrganizationManagement.Domain.Model.Commands;
-
 namespace Web_Services.OrganizationManagement.Domain.Model.Aggregates;
 
 public partial class Organization
