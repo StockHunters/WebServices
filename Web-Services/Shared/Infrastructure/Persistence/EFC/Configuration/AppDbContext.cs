@@ -7,6 +7,7 @@ using Web_Services.ClientManagement.Domain.Model.Aggregates;
 using Web_Services.ClientManagement.Domain.Model.ValueObjects;
 using Web_Services.InventoryManagement.Domain.Model.Aggregates;
 using Web_Services.OrganizationManagement.Domain.Model.Aggregates;
+using Web_Services.SystemManagement.Domain.Model.Aggregate;
 
 
 namespace Web_Services.Shared.Infrastructure.Persistence.EFC.Configuration;
@@ -126,6 +127,17 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         builder.Entity<Organization>().Property(f => f.Name).IsRequired();
         builder.Entity<Organization>().Property(f => f.ContactEmail).IsRequired();
         builder.Entity<Organization>().Property(f => f.PlanId).IsRequired();
+        
+        builder.Entity<User>().HasKey(f => f.Id);
+        builder.Entity<User>().Property(f => f.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<User>().Property(f => f.OrganizationId).IsRequired();
+        builder.Entity<User>().Property(f => f.Username).IsRequired();
+        builder.Entity<User>().Property(f => f.Email).IsRequired();
+        builder.Entity<User>().Property(f => f.PasswordHash).IsRequired();
+        builder.Entity<User>().Property(f => f.FirstName).IsRequired();
+        builder.Entity<User>().Property(f => f.LastName).IsRequired();
+        builder.Entity<User>().Property(f => f.ProfileImageUrl).IsRequired();
+        builder.Entity<User>().Property(f => f.Role).IsRequired();
         
         builder.UseSnakeCaseNamingConvention();
     }
