@@ -5,7 +5,7 @@ using Web_Services.SystemManagement.Domain.Services;
 
 namespace Web_Services.SystemManagement.Application.Internal.QueryServices;
 
-public class UserQueryServices(IUserRepository userRepository): IUserQueryService
+public class UserQueryService(IUserRepository userRepository): IUserQueryService
 {
     public async Task<IEnumerable<User>> Handle(GetAllUsersQuery query)
     {

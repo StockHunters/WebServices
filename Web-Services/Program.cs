@@ -20,6 +20,7 @@ using Web_Services.Shared.Infrastructure.Interfaces.ASP.Configuration;
 using Web_Services.Shared.Infrastructure.Persistence.EFC.Configuration;
 using Web_Services.Shared.Infrastructure.Persistence.EFC.Repositories;
 using Web_Services.SystemManagement.Application.Internal.CommandServices;
+using Web_Services.SystemManagement.Application.Internal.QueryServices;
 using Web_Services.SystemManagement.Domain.Repositories;
 using Web_Services.SystemManagement.Domain.Services;
 using Web_Services.SystemManagement.Infrastructure.Persistence.EFC.Repositories;
@@ -119,7 +120,7 @@ builder.Services.AddScoped<IOrganizationQueryService, OrganizationQueryService>(
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserCommandService, UserCommandService>();
-builder.Services.AddScoped<IUserQueryService,IUserQueryService>();
+builder.Services.AddScoped<IUserQueryService,UserQueryService>();
 
 var app = builder.Build();
 
