@@ -11,6 +11,7 @@ public partial class Product: Asset
     public int Stock { get; set; }
     public int CategoryId { get; set; }
 
+    public Category Category { get; set; }
     protected Product()
     {
         Name = string.Empty;
