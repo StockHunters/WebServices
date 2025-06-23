@@ -1,4 +1,3 @@
-
 using Microsoft.EntityFrameworkCore;
 using Web_Services.ClientManagement.Application.CommandServices;
 using Web_Services.ClientManagement.Application.QueryServices;
@@ -24,6 +23,11 @@ using Web_Services.SystemManagement.Application.Internal.QueryServices;
 using Web_Services.SystemManagement.Domain.Repositories;
 using Web_Services.SystemManagement.Domain.Services;
 using Web_Services.SystemManagement.Infrastructure.Persistence.EFC.Repositories;
+using Web_Services.Procurement.Application.Internal.CommandServices;
+using Web_Services.Procurement.Application.Internal.QueryServices;
+using Web_Services.Procurement.Domain.Repositories;
+using Web_Services.Procurement.Domain.Services;
+using Web_Services.Procurement.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -121,6 +125,26 @@ builder.Services.AddScoped<IOrganizationQueryService, OrganizationQueryService>(
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserCommandService, UserCommandService>();
 builder.Services.AddScoped<IUserQueryService,UserQueryService>();
+
+builder.Services.AddScoped<IProductSupplierRepository, ProductSupplierRepository>();
+builder.Services.AddScoped<IProductSupplierCommandService, ProductSupplierCommandService>();
+builder.Services.AddScoped<IProductSupplierQueryService, ProductSupplierQueryService>();
+
+builder.Services.AddScoped<IPurchaseRepository, PurchaseRepository>();
+builder.Services.AddScoped<IPurchaseCommandService, PurchaseCommandService>();
+builder.Services.AddScoped<IPurchaseQueryService, PurchaseQueryService>();
+
+builder.Services.AddScoped<IPurchaseOrderRepository, PurchaseOrderRepository>();
+builder.Services.AddScoped<IPurchaseOrderCommandService, PurchaseOrderCommandService>();
+builder.Services.AddScoped<IPurchaseOrderQueryService, PurchaseOrderQueryService>();
+
+builder.Services.AddScoped<IPurchaseOrderItemRepository, PurchaseOrderItemRepository>();
+builder.Services.AddScoped<IPurchaseOrderItemCommandService, PurchaseOrderItemCommandService>();
+builder.Services.AddScoped<IPurchaseOrderItemQueryService, PurchaseOrderItemQueryService>();
+
+builder.Services.AddScoped<ILotRepository, LotRepository>();
+builder.Services.AddScoped<ILotCommandService, LotCommandService>();
+builder.Services.AddScoped<ILotQueryService, LotQueryService>();
 
 var app = builder.Build();
 
