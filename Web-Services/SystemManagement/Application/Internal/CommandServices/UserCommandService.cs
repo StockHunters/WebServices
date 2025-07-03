@@ -8,9 +8,9 @@ namespace Web_Services.SystemManagement.Application.Internal.CommandServices;
 
 public class UserCommandService(IUserRepository userRepository, IUnitOfWork unitOfWork): IUserCommandService
 {
-    public async Task<User?> Handle(CreateUserCommand command)
+    public async Task<UserAccount?> Handle(CreateUserCommand command)
     {
-        var user = new User(command);
+        var user = new UserAccount(command);
         try
         {
             await userRepository.AddAsync(user);

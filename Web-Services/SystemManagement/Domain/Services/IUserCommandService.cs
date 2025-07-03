@@ -5,5 +5,5 @@ namespace Web_Services.SystemManagement.Domain.Services;
 
 public interface IUserCommandService
 {
-    Task<User?> Handle(CreateUserCommand command);
+    Task<UserAccount?> Handle(CreateUserCommand command);
 }

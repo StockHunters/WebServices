@@ -14,8 +14,8 @@ namespace Web_Services.SystemManagement.Interfaces.REST;
 public class UserController(IUserCommandService userCommandService, IUserQueryService userQueryService):ControllerBase
 {
     [HttpGet("{userId:int}")]
-    [SwaggerOperation("Get User by Id", "Get a user by its unique identifier.", OperationId = "GetUserById")]
-    [SwaggerResponse(200, "The user was found and returned.", typeof(UserResource))]
+    [SwaggerOperation("Get UserAccount by Id", "Get a user by its unique identifier.", OperationId = "GetUserById")]
+    [SwaggerResponse(200, "The user was found and returned.", typeof(UserAccountResource))]
     [SwaggerResponse(404, "The user was not found.")]
     public async Task<IActionResult> GetUserById(int userId)
     {
@@ -27,12 +27,12 @@ public class UserController(IUserCommandService userCommandService, IUserQuerySe
     }
 
     [HttpPost]
-    [SwaggerOperation("Create User", "Create a new user.", OperationId = "CreateUser")]
-    [SwaggerResponse(201, "The user was created.", typeof(UserResource))]
+    [SwaggerOperation("Create UserAccount", "Create a new user.", OperationId = "CreateUser")]
+    [SwaggerResponse(201, "The user was created.", typeof(UserAccountResource))]
     [SwaggerResponse(400, "The user was not created.")]
-    public async Task<IActionResult> CreateUser(CreateUserResource resource)
+    public async Task<IActionResult> CreateUser(CreateUserAccountResource accountResource)
     {
-        var createUserCommand = CreateUserCommandFromResourceAssembler.ToCommandFromResource(resource);
+        var createUserCommand = CreateUserCommandFromResourceAssembler.ToCommandFromResource(accountResource);
         var user = await userCommandService.Handle(createUserCommand);
         if (user is null) return BadRequest();
         var userResource = UserResourceFromEntityAssembler.ToResourceFromEntity(user);
@@ -41,7 +41,7 @@ public class UserController(IUserCommandService userCommandService, IUserQuerySe
 
     [HttpGet]
     [SwaggerOperation("Get All Users", "Get all users.", OperationId = "GetAllUsers")]
-    [SwaggerResponse(200, "The users were found and returned.", typeof(IEnumerable<UserResource>))]
+    [SwaggerResponse(200, "The users were found and returned.", typeof(IEnumerable<UserAccountResource>))]
     [SwaggerResponse(404, "The users were not found.")]
     public async Task<IActionResult> GetAllUsers()
     {

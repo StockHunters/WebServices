@@ -5,6 +5,6 @@ namespace Web_Services.SystemManagement.Domain.Services;
 
 public interface IUserQueryService
 {
-    Task<User?> Handle(GetUserByIdQuery query);
-    Task<IEnumerable<User>> Handle(GetAllUsersQuery query);
+    Task<UserAccount?> Handle(GetUserByIdQuery query);
+    Task<IEnumerable<UserAccount>> Handle(GetAllUsersQuery query);
 }

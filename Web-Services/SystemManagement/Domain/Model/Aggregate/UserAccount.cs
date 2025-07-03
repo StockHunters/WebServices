@@ -4,7 +4,7 @@ using Web_Services.SystemManagement.Domain.Model.ValueObject;
 
 namespace Web_Services.SystemManagement.Domain.Model.Aggregate;
 
-public partial class User
+public partial class UserAccount
 {
     public int Id { get; }
     public int OrganizationId { get; set; }
@@ -18,7 +18,7 @@ public partial class User
     
     public Organization Organization { get; set; }
 
-    public User()
+    public UserAccount()
     {
         OrganizationId = 0;
         Username = string.Empty;
@@ -30,7 +30,7 @@ public partial class User
         Role = UserRole.Admin;
     }
 
-    public User(CreateUserCommand command)
+    public UserAccount(CreateUserCommand command)
     {
         OrganizationId = command.OrganizationId;
         Username=command.Username;

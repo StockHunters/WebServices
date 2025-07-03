@@ -5,15 +5,15 @@ namespace Web_Services.SystemManagement.Interfaces.REST.Transform;
 
 public static class CreateUserCommandFromResourceAssembler
 {
-    public static CreateUserCommand ToCommandFromResource(CreateUserResource resource)
+    public static CreateUserCommand ToCommandFromResource(CreateUserAccountResource accountResource)
     {
         return new CreateUserCommand(
-            resource.OrganizationId,
-            resource.Username,
-            resource.Email,
-            resource.PasswordHash,
-            resource.FirstName,
-            resource.LastName,
-            resource.ProfileImageUrl);
+            accountResource.OrganizationId,
+            accountResource.Username,
+            accountResource.Email,
+            accountResource.PasswordHash,
+            accountResource.FirstName,
+            accountResource.LastName,
+            accountResource.ProfileImageUrl);
     }
 }

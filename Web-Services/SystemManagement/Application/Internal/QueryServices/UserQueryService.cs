@@ -7,12 +7,12 @@ namespace Web_Services.SystemManagement.Application.Internal.QueryServices;
 
 public class UserQueryService(IUserRepository userRepository): IUserQueryService
 {
-    public async Task<IEnumerable<User>> Handle(GetAllUsersQuery query)
+    public async Task<IEnumerable<UserAccount>> Handle(GetAllUsersQuery query)
     {
         return await userRepository.ListAsync();
     }
     
-    public async Task<User?> Handle(GetUserByIdQuery query)
+    public async Task<UserAccount?> Handle(GetUserByIdQuery query)
     {
         return await userRepository.FindByIdAsync(query.Id);
     }
