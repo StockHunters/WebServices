@@ -6,5 +6,5 @@ namespace Web_Services.SystemManagement.Domain.Services;
 public interface IUserAccountQueryService
 {
     Task<UserAccount?> Handle(GetUserAccountByIdQuery query);
-    Task<IEnumerable<UserAccount>> Handle(GetAllUsersAccountsQuery accountsQuery);
+    Task<IEnumerable<UserAccount>> Handle(GetAllUsersAccountsQuery query);
 }

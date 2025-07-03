@@ -9,9 +9,8 @@ public static class CreateUserCommandFromResourceAssembler
     {
         return new CreateUserAccountCommand(
             accountResource.OrganizationId,
-            accountResource.Username,
+            accountResource.UserId,
             accountResource.Email,
-            accountResource.PasswordHash,
             accountResource.FirstName,
             accountResource.LastName,
             accountResource.ProfileImageUrl);

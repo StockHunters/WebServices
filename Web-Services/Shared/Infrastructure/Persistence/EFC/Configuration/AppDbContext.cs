@@ -133,9 +133,8 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         builder.Entity<UserAccount>().HasKey(f => f.Id);
         builder.Entity<UserAccount>().Property(f => f.Id).IsRequired().ValueGeneratedOnAdd();
         builder.Entity<UserAccount>().Property(f => f.OrganizationId).IsRequired();
-        builder.Entity<UserAccount>().Property(f => f.Username).IsRequired();
+        builder.Entity<UserAccount>().Property(f => f.UserId).IsRequired();
         builder.Entity<UserAccount>().Property(f => f.Email).IsRequired();
-        builder.Entity<UserAccount>().Property(f => f.PasswordHash).IsRequired();
         builder.Entity<UserAccount>().Property(f => f.FirstName).IsRequired();
         builder.Entity<UserAccount>().Property(f => f.LastName).IsRequired();
         builder.Entity<UserAccount>().Property(f => f.ProfileImageUrl).IsRequired();
