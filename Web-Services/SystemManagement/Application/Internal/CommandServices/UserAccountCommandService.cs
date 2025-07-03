@@ -6,14 +6,14 @@ using Web_Services.SystemManagement.Domain.Services;
 
 namespace Web_Services.SystemManagement.Application.Internal.CommandServices;
 
-public class UserCommandService(IUserRepository userRepository, IUnitOfWork unitOfWork): IUserCommandService
+public class UserAccountCommandService(IUserAccountRepository userAccountRepository, IUnitOfWork unitOfWork): IUserAccountCommandService
 {
-    public async Task<UserAccount?> Handle(CreateUserCommand command)
+    public async Task<UserAccount?> Handle(CreateUserAccountCommand accountCommand)
     {
-        var user = new UserAccount(command);
+        var user = new UserAccount(accountCommand);
         try
         {
-            await userRepository.AddAsync(user);
+            await userAccountRepository.AddAsync(user);
             await unitOfWork.CompleteAsync();
             return user;
         } catch (Exception e)

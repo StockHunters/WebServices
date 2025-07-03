@@ -3,7 +3,7 @@ using Web_Services.SystemManagement.Domain.Model.Aggregate;
 
 namespace Web_Services.SystemManagement.Domain.Repositories;
 
-public interface IUserRepository: IBaseRepository<UserAccount>
+public interface IUserAccountRepository: IBaseRepository<UserAccount>
 {
     
 }

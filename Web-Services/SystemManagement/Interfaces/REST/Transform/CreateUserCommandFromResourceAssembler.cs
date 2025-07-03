@@ -5,9 +5,9 @@ namespace Web_Services.SystemManagement.Interfaces.REST.Transform;
 
 public static class CreateUserCommandFromResourceAssembler
 {
-    public static CreateUserCommand ToCommandFromResource(CreateUserAccountResource accountResource)
+    public static CreateUserAccountCommand ToCommandFromResource(CreateUserAccountResource accountResource)
     {
-        return new CreateUserCommand(
+        return new CreateUserAccountCommand(
             accountResource.OrganizationId,
             accountResource.Username,
             accountResource.Email,

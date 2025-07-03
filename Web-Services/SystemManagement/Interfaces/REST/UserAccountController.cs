@@ -11,7 +11,7 @@ namespace Web_Services.SystemManagement.Interfaces.REST;
 [Route("api/v1/[controller]")]
 [Produces(MediaTypeNames.Application.Json)]
 [SwaggerTag("Available Users Endpoints.")]
-public class UserController(IUserCommandService userCommandService, IUserQueryService userQueryService):ControllerBase
+public class UserAccountController(IUserAccountCommandService userAccountCommandService, IUserAccountQueryService userAccountQueryService):ControllerBase
 {
     [HttpGet("{userId:int}")]
     [SwaggerOperation("Get UserAccount by Id", "Get a user by its unique identifier.", OperationId = "GetUserById")]
@@ -19,8 +19,8 @@ public class UserController(IUserCommandService userCommandService, IUserQuerySe
     [SwaggerResponse(404, "The user was not found.")]
     public async Task<IActionResult> GetUserById(int userId)
     {
-        var getUserByIdQuery = new GetUserByIdQuery(userId);
-        var user = await userQueryService.Handle(getUserByIdQuery);
+        var getUserByIdQuery = new GetUserAccountByIdQuery(userId);
+        var user = await userAccountQueryService.Handle(getUserByIdQuery);
         if (user is null) return NotFound();
         var userResource = UserResourceFromEntityAssembler.ToResourceFromEntity(user);
         return Ok(userResource);
@@ -33,7 +33,7 @@ public class UserController(IUserCommandService userCommandService, IUserQuerySe
     public async Task<IActionResult> CreateUser(CreateUserAccountResource accountResource)
     {
         var createUserCommand = CreateUserCommandFromResourceAssembler.ToCommandFromResource(accountResource);
-        var user = await userCommandService.Handle(createUserCommand);
+        var user = await userAccountCommandService.Handle(createUserCommand);
         if (user is null) return BadRequest();
         var userResource = UserResourceFromEntityAssembler.ToResourceFromEntity(user);
         return CreatedAtAction(nameof(GetUserById), new { userId = user.Id }, userResource);
@@ -45,8 +45,8 @@ public class UserController(IUserCommandService userCommandService, IUserQuerySe
     [SwaggerResponse(404, "The users were not found.")]
     public async Task<IActionResult> GetAllUsers()
     {
-        var getAllUsersQuery = new GetAllUsersQuery();
-        var users = await userQueryService.Handle(getAllUsersQuery);
+        var getAllUsersQuery = new GetAllUsersAccountsQuery();
+        var users = await userAccountQueryService.Handle(getAllUsersQuery);
         var userResources = users.Select(UserResourceFromEntityAssembler.ToResourceFromEntity);
         return Ok(userResources);
     }

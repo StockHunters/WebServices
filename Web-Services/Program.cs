@@ -38,6 +38,11 @@ using Web_Services.Procurement.Application.Internal.QueryServices;
 using Web_Services.Procurement.Domain.Repositories;
 using Web_Services.Procurement.Domain.Services;
 using Web_Services.Procurement.Infrastructure.Repositories;
+using Web_Services.SystemManagement.Application.Internal.CommandServices;
+using Web_Services.SystemManagement.Application.Internal.QueryServices;
+using Web_Services.SystemManagement.Domain.Repositories;
+using Web_Services.SystemManagement.Domain.Services;
+using Web_Services.SystemManagement.Infrastructure.Persistence.EFC.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -171,10 +176,10 @@ builder.Services.AddScoped<IPlanQueryService, PlanQueryService>();
 builder.Services.AddScoped<IOrganizationRepository, OrganizationRepository>();
 builder.Services.AddScoped<IOrganizationCommandService, OrganizationCommandService>();
 builder.Services.AddScoped<IOrganizationQueryService, OrganizationQueryService>();
-/*
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<IUserCommandService, UserCommandService>();
-builder.Services.AddScoped<IUserQueryService,UserQueryService>();*/
+
+builder.Services.AddScoped<IUserAccountRepository, UserAccountRepository>();
+builder.Services.AddScoped<IUserAccountCommandService, UserAccountCommandService>();
+builder.Services.AddScoped<IUserAccountQueryService,UserAccountQueryService>();
 
 builder.Services.AddScoped<IProductSupplierRepository, ProductSupplierRepository>();
 builder.Services.AddScoped<IProductSupplierCommandService, ProductSupplierCommandService>();

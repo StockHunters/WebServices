@@ -30,15 +30,15 @@ public partial class UserAccount
         Role = UserRole.Admin;
     }
 
-    public UserAccount(CreateUserCommand command)
+    public UserAccount(CreateUserAccountCommand accountCommand)
     {
-        OrganizationId = command.OrganizationId;
-        Username=command.Username;
-        Email = command.Email;
-        PasswordHash = command.PasswordHash;
-        FirstName = command.FirstName;
-        LastName = command.LastName;
-        ProfileImageUrl = command.ProfileImageUrl;
+        OrganizationId = accountCommand.OrganizationId;
+        Username=accountCommand.Username;
+        Email = accountCommand.Email;
+        PasswordHash = accountCommand.PasswordHash;
+        FirstName = accountCommand.FirstName;
+        LastName = accountCommand.LastName;
+        ProfileImageUrl = accountCommand.ProfileImageUrl;
         Role = UserRole.Admin;
     }
 }

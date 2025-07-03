@@ -3,7 +3,7 @@ using Web_Services.SystemManagement.Domain.Model.Commands;
 
 namespace Web_Services.SystemManagement.Domain.Services;
 
-public interface IUserCommandService
+public interface IUserAccountCommandService
 {
-    Task<UserAccount?> Handle(CreateUserCommand command);
+    Task<UserAccount?> Handle(CreateUserAccountCommand accountCommand);
 }

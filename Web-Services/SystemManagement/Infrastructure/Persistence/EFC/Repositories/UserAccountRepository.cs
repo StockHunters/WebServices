@@ -5,7 +5,7 @@ using Web_Services.SystemManagement.Domain.Repositories;
 
 namespace Web_Services.SystemManagement.Infrastructure.Persistence.EFC.Repositories;
 
-public class UserRepository(AppDbContext context): BaseRepository<UserAccount>(context), IUserRepository
+public class UserAccountRepository(AppDbContext context): BaseRepository<UserAccount>(context), IUserAccountRepository
 {
     
 }
