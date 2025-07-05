@@ -11,4 +11,8 @@ public class PurchaseQueryService(IPurchaseRepository purchaseRepository): IPurc
     {
         return await purchaseRepository.FindByIdAsync(query.id);
     }
+    public async Task<IEnumerable<purchases>> Handle(GetAllPurchaseQuery query)
+    {
+        return await purchaseRepository.ListAsync();
+    }
 }
