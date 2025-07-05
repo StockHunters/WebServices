@@ -11,4 +11,9 @@ public class PurchaseOrderItemQueryService(IPurchaseOrderItemRepository purchase
     {
         return await purchaseOrderItemRepository.FindByIdAsync(query.id);
     }
+    
+    public async Task<IEnumerable<purchase_order_items>> Handle(GetAllPurchaseOrderItemQuery query)
+    {
+        return await purchaseOrderItemRepository.ListAsync();
+    }
 }
