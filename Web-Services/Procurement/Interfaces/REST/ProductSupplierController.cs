@@ -46,4 +46,17 @@ public class ProductSupplierController(IProductSupplierCommandService productSup
         var resource = ProductSupplierResourceFromEntityAssembler.ToResourceFromEntity(result);
         return Ok(resource);
     }
+    
+    [HttpGet]
+    [SwaggerOperation("Get All Product Suppliers ", "Get all Product Suppliers.", OperationId = "GetAllProductSupplier")]
+    [SwaggerResponse(200, "The Product Suppliers were found and returned.", typeof(IEnumerable<ProductSupplierResource>))]
+    [SwaggerResponse(404, "The Product Suppliers were not found.")]
+    public async Task<IActionResult> GetAllProductSupplier()
+    {
+        var getAllProductSuppliersQuery = new GetAllProductSuppliersQuery();
+        var productsSuppliers = await productSupplierQueryService.Handle(getAllProductSuppliersQuery);
+        var productsSuppliersResources = productsSuppliers.Select(ProductSupplierResourceFromEntityAssembler.ToResourceFromEntity);
+        return Ok(productsSuppliersResources);
+    }
+    
 }

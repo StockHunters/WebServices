@@ -46,4 +46,16 @@ public class PurchaseOrderController(IPurchaseOrderCommandService purchaseOrderC
         var resource = PurchaseOrderResourceFromEntityAssembler.ToResourceFromEntity(result);
         return Ok(resource);
     }
+    
+    [HttpGet]
+    [SwaggerOperation("Get All Purchase Order", "Get all Purchase Order.", OperationId = "GetAllPurchaseOrder")]
+    [SwaggerResponse(200, "The Purchase Order were found and returned.", typeof(IEnumerable<PurchaseOrderResource>))]
+    [SwaggerResponse(404, "The Purchase Order were not found.")]
+    public async Task<IActionResult> GetAllPurchaseOrder()
+    {
+        var getAllPurchaseOrderQuery = new GetAllPurchaseOrderQuery();
+        var purchaseOrders = await purchaseOrderQueryService.Handle(getAllPurchaseOrderQuery);
+        var purchaseOrdersResources = purchaseOrders.Select(PurchaseOrderResourceFromEntityAssembler.ToResourceFromEntity);
+        return Ok(purchaseOrdersResources);
+    }
 }

@@ -46,4 +46,17 @@ public class LotController(ILotCommandService lotCommandService, ILotQueryServic
         var resource = LotResourceFromEntityAssembler.ToResourceFromEntity(result);
         return Ok(resource);
     }
+    
+    [HttpGet]
+    [SwaggerOperation("Get All Lot", "Get all Lot.", OperationId = "GetAllLots")]
+    [SwaggerResponse(200, "The Lot were found and returned.", typeof(IEnumerable<LotResource>))]
+    [SwaggerResponse(404, "The Lot were not found.")]
+    public async Task<IActionResult> GetAllLots()
+    {
+        var getAllLotsQuery = new GetAllLotQuery();
+        var lot = await lotQueryService.Handle(getAllLotsQuery);
+        var lotResources = lot.Select(LotResourceFromEntityAssembler.ToResourceFromEntity);
+        return Ok(lotResources);
+    }
+    
 }

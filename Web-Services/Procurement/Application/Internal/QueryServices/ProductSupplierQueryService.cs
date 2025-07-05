@@ -11,4 +11,9 @@ public class ProductSupplierQueryService(IProductSupplierRepository productSuppl
     {
         return await productSupplierRepository.FindByIdAsync(query.id);
     }
+    
+    public async Task<IEnumerable<product_suppliers>> Handle(GetAllProductSuppliersQuery query)
+    {
+        return await productSupplierRepository.ListAsync();
+    }
 }

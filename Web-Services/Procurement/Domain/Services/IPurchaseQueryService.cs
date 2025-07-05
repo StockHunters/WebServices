@@ -6,4 +6,5 @@ namespace Web_Services.Procurement.Domain.Services;
 public interface IPurchaseQueryService
 {
     Task<purchases?> Handle(GetPurchaseByIdQuery query);
+    Task<IEnumerable<purchases>> Handle(GetAllPurchaseQuery query);
 }

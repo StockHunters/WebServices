@@ -6,4 +6,5 @@ namespace Web_Services.Procurement.Domain.Services;
 public interface ILotQueryService
 {
     Task<lots?> Handle(GetLotByIdQuery query);
+    Task<IEnumerable<lots>> Handle(GetAllLotQuery query);
 }

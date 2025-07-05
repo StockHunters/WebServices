@@ -11,4 +11,9 @@ public class LotQueryService(ILotRepository lotRepository): ILotQueryService
     {
         return await lotRepository.FindByIdAsync(query.id);
     }
+    
+    public async Task<IEnumerable<lots>> Handle(GetAllLotQuery query)
+    {
+        return await lotRepository.ListAsync();
+    }
 }
