@@ -6,4 +6,5 @@ namespace Web_Services.Procurement.Domain.Services;
 public interface IProductSupplierQueryService
 {
     Task<product_suppliers?> Handle(GetProductSupplierByIdQuery query);
+    Task<IEnumerable<product_suppliers>> Handle(GetAllProductSuppliersQuery query);
 }
