@@ -40,6 +40,14 @@ public partial class Sale
         UserId = command.UserId;
         LocationId = command.LocationId;
     }
+
+    public Sale UpdateInformation(UpdateSaleCommand command)
+    {
+        this.Date = new SaleDate(command.Date);
+        this.Quantity = new SaleQuantity(command.Quantity);
+        this.Status = new SaleStatus(command.Status);
+        return this;
+    }
     
     
 }

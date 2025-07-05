@@ -6,4 +6,6 @@ namespace Web_Services.ClientManagement.Domain.Services;
 public interface IClientCommandService
 {
     Task<Client?> Handle(CreateClientCommand command);
+    
+    
 }

@@ -6,4 +6,6 @@ namespace Web_Services.ClientManagement.Domain.Services;
 public interface ISaleCommandService
 {
     Task<Sale?> Handle(CreateSaleCommand command);
+    
+    Task<Sale?> Handle(UpdateSaleCommand command);
 }
