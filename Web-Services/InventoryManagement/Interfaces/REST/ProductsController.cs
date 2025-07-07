@@ -55,7 +55,7 @@ public class ProductsController(IProductCommandService productCommandService, IP
         return Ok(resource);
     }
 
-    [HttpGet]
+    [HttpGet("by-category")]
     [SwaggerOperation(
         Summary = "Gets a product according to parameters",
         Description = "Gets a product for given parameters",
@@ -64,6 +64,18 @@ public class ProductsController(IProductCommandService productCommandService, IP
     public async Task<ActionResult> GetProductFromQuery([FromQuery] int categoryId)
     {
         return await GetAllProductsByCategoryId(categoryId);
+    }
+
+    [HttpGet]
+    [SwaggerOperation("Get All Products", "Get all product .", OperationId = "GetAllProducts")]
+    [SwaggerResponse(200, "The products were found and returned.", typeof(IEnumerable<ProductResource>))]
+    [SwaggerResponse(404, "The products were not found.")]
+    public async Task<IActionResult> GetAllProduct()
+    {
+        var getAllProductQuery = new GetAllProductQuery();
+        var product = await productQueryService.Handle(getAllProductQuery);
+        var productResources = product.Select(ProductResourceFromEntityAssembler.ToResourceFromEntity);
+        return Ok(productResources);
     }
 
 }
