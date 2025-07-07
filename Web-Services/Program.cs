@@ -84,15 +84,10 @@ builder.Services.AddSwaggerGen(options =>
     options.SwaggerDoc("v1",
         new OpenApiInfo
         {
-            Title = "ACME.LearningCenterPlatform.API",
+            Title = "StockHunters.WebService.API",
             Version = "v1",
-            Description = "ACME Learning Center Platform API",
+            Description = "Inventory Api",
             TermsOfService = new Uri("https://acme-learning.com/tos"),
-            Contact = new OpenApiContact
-            {
-                Name = "ACME Studios",
-                Email = "contact@acme.com"
-            },
             License = new OpenApiLicense
             {
                 Name = "Apache 2.0",
