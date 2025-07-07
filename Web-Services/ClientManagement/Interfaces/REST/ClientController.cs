@@ -28,7 +28,18 @@ public class ClientController(IClientCommandService  clientCommandService, IClie
         if (result is null) return BadRequest();
         return CreatedAtAction(nameof(GetClientById), new { id = result.Id }, ClientResourceFromEntityAssembler.ToResourceFromEntity(result));
     }
-
+    
+    [HttpGet]
+    [SwaggerOperation("Get All Clients", "Get all clients.", OperationId = "GetAllClients")]
+    [SwaggerResponse(200, "The clients were found and returned.", typeof(IEnumerable<ClientResource>))]
+    [SwaggerResponse(404, "The clients were not found.")]
+    public async Task<IActionResult> GetAllClients()
+    {
+        var getAllClientsQuery = new GetAllClientsQuery();
+        var clients = await clientQueryService.Handle(getAllClientsQuery);
+        var clientResources = clients.Select(ClientResourceFromEntityAssembler.ToResourceFromEntity);
+        return Ok(clientResources);
+    }
 
     [HttpGet("{id}")]
     [SwaggerOperation(

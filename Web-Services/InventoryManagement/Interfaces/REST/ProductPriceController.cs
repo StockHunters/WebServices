@@ -29,7 +29,19 @@ public class ProductPriceController(IProductPriceCommandService productPriceComm
         var resource = ProductPriceResourceFromEntityAssembler.ToResourceFromEntity(productPrice);
         return Ok(resource);
     }
-
+    
+    [HttpGet]
+    [SwaggerOperation("Get All Product Price", "Get all product price.", OperationId = "GetAllProductPrice")]
+    [SwaggerResponse(200, "The categories were found and returned.", typeof(IEnumerable<ProductPriceResource>))]
+    [SwaggerResponse(404, "The categories were not found.")]
+    public async Task<IActionResult> GetAllProductPrice()
+    {
+        var getAllProductPriceQuery = new GetAllProductPriceQuery();
+        var productPrice = await productPriceQueryService.Handle(getAllProductPriceQuery);
+        var productPriceResources = productPrice.Select(ProductPriceResourceFromEntityAssembler.ToResourceFromEntity);
+        return Ok(productPriceResources);
+    }
+    
     [HttpPost]
     [SwaggerOperation(
         Summary = "Create a new category",

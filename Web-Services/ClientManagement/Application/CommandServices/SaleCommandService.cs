@@ -23,4 +23,20 @@ public class SaleCommandService(ISaleRepository saleRepository, IUnitOfWork unit
             return null;
         }
     }
+
+    public async Task<Sale?> Handle(UpdateSaleCommand command)
+    {
+        try
+        {
+            var sale = await saleRepository.FindByIdAsync(command.Id);
+            if (sale is null) throw new Exception("No se encontro el registro");
+            sale.UpdateInformation(command);
+            saleRepository.Update(sale);
+            await unitOfWork.CompleteAsync();
+            return sale;
+        } catch (Exception e)
+        {
+            return null;
+        }
+    }
 }

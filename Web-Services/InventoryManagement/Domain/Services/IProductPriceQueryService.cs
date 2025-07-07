@@ -8,4 +8,5 @@ public interface IProductPriceQueryService
     Task<ProductPrice?> Handle(GetProductPriceByIdQuery query);
     
     Task<ProductPrice?> Handle(GetProductPriceByProductIdQuery query);
+    Task<IEnumerable<ProductPrice>> Handle(GetAllProductPriceQuery query);
 }

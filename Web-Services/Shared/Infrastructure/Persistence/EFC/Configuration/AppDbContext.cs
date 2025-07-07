@@ -1,4 +1,3 @@
-
 using Web_Services.Shared.Infrastructure.Persistence.EFC.Configuration.Extensions;
 using EntityFrameworkCore.CreatedUpdatedDate.Extensions;
 
@@ -9,6 +8,9 @@ using Web_Services.InventoryManagement.Domain.Model.Aggregates;
 using Web_Services.OrganizationManagement.Domain.Model.Aggregates;
 using Web_Services.SystemManagement.Domain.Model.Aggregate;
 
+using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
+using Web_Services.IAM.Domain.Model.Aggregates;
+using Web_Services.Procurement.Domain.Model.Aggregates;
 
 namespace Web_Services.Shared.Infrastructure.Persistence.EFC.Configuration;
 
@@ -128,16 +130,64 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         builder.Entity<Organization>().Property(f => f.ContactEmail).IsRequired();
         builder.Entity<Organization>().Property(f => f.PlanId).IsRequired();
         
-        builder.Entity<User>().HasKey(f => f.Id);
-        builder.Entity<User>().Property(f => f.Id).IsRequired().ValueGeneratedOnAdd();
-        builder.Entity<User>().Property(f => f.OrganizationId).IsRequired();
-        builder.Entity<User>().Property(f => f.Username).IsRequired();
-        builder.Entity<User>().Property(f => f.Email).IsRequired();
-        builder.Entity<User>().Property(f => f.PasswordHash).IsRequired();
-        builder.Entity<User>().Property(f => f.FirstName).IsRequired();
-        builder.Entity<User>().Property(f => f.LastName).IsRequired();
-        builder.Entity<User>().Property(f => f.ProfileImageUrl).IsRequired();
-        builder.Entity<User>().Property(f => f.Role).IsRequired();
+        builder.Entity<UserAccount>().HasKey(f => f.Id);
+        builder.Entity<UserAccount>().Property(f => f.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<UserAccount>().Property(f => f.OrganizationId).IsRequired();
+        builder.Entity<UserAccount>().Property(f => f.Username).IsRequired();
+        builder.Entity<UserAccount>().Property(f => f.Email).IsRequired();
+        builder.Entity<UserAccount>().Property(f => f.PasswordHash).IsRequired();
+        builder.Entity<UserAccount>().Property(f => f.FirstName).IsRequired();
+        builder.Entity<UserAccount>().Property(f => f.LastName).IsRequired();
+        builder.Entity<UserAccount>().Property(f => f.ProfileImageUrl).IsRequired();
+        builder.Entity<UserAccount>().Property(f => f.Role).IsRequired();
+      
+              builder.Entity<product_suppliers>().HasKey(f => f.id);
+        builder.Entity<product_suppliers>().Property(f => f.product_id).IsRequired();
+        builder.Entity<product_suppliers>().Property(f => f.supplier_id).IsRequired();
+        builder.Entity<product_suppliers>().Property(f => f.supply_price).IsRequired();
+        builder.Entity<product_suppliers>().Property(f => f.created_at).IsRequired();
+        
+        builder.Entity<purchases>().HasKey(f => f.id);
+        builder.Entity<purchases>().Property(f => f.supplier_id).IsRequired();
+        builder.Entity<purchases>().Property(f => f.product_id).IsRequired();
+        builder.Entity<purchases>().Property(f => f.order_id).IsRequired();
+        builder.Entity<purchases>().Property(f => f.quantity).IsRequired();
+        builder.Entity<purchases>().Property(f => f.purchase_date).IsRequired();
+        builder.Entity<purchases>().Property(f => f.status).IsRequired();
+        builder.Entity<purchases>().Property(f => f.user_id).IsRequired();
+        builder.Entity<purchases>().Property(f => f.location_id).IsRequired();
+        builder.Entity<purchases>().Property(f => f.created_at).IsRequired();
+        builder.Entity<purchases>().Property(f => f.updated_at).IsRequired();
+        
+        builder.Entity<purchase_orders>().HasKey(f => f.id);
+        builder.Entity<purchase_orders>().Property(f => f.supplier_id).IsRequired();
+        builder.Entity<purchase_orders>().Property(f => f.user_id).IsRequired();
+        builder.Entity<purchase_orders>().Property(f => f.location_id).IsRequired();
+        builder.Entity<purchase_orders>().Property(f => f.order_date).IsRequired();
+        builder.Entity<purchase_orders>().Property(f => f.status).IsRequired();
+        builder.Entity<purchase_orders>().Property(f => f.created_at).IsRequired();
+        builder.Entity<purchase_orders>().Property(f => f.updated_at).IsRequired();
+        
+        builder.Entity<purchase_order_items>().HasKey(f => f.id);
+        builder.Entity<purchase_order_items>().Property(f => f.order_id).IsRequired();
+        builder.Entity<purchase_order_items>().Property(f => f.product_id).IsRequired();
+        builder.Entity<purchase_order_items>().Property(f => f.quantity).IsRequired();
+        builder.Entity<purchase_order_items>().Property(f => f.unit_price).IsRequired();
+        builder.Entity<purchase_order_items>().Property(f => f.created_at).IsRequired();
+        
+        builder.Entity<lots>().HasKey(f => f.id);
+        builder.Entity<lots>().Property(f => f.product_id).IsRequired();
+        builder.Entity<lots>().Property(f => f.purchase_id).IsRequired();
+        builder.Entity<lots>().Property(f => f.lot_number).IsRequired();
+        builder.Entity<lots>().Property(f => f.purchase_date).IsRequired();
+        builder.Entity<lots>().Property(f => f.expiration_date).IsRequired();
+        builder.Entity<lots>().Property(f => f.created_at).IsRequired();
+        
+        // IAM Context
+        builder.Entity<User>().HasKey(u => u.Id);
+        builder.Entity<User>().Property(u => u.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<User>().Property(u => u.Username).IsRequired();
+        builder.Entity<User>().Property(u => u.PasswordHash).IsRequired();
         
         builder.UseSnakeCaseNamingConvention();
     }

@@ -8,4 +8,5 @@ public interface IClientQueryService
     Task<Client?> Handle(GetClientByDniQuery query);
     
     Task<Client?> Handle(GetClientByIdQuery query);
+    Task<IEnumerable<Client>> Handle(GetAllClientsQuery query);
 }

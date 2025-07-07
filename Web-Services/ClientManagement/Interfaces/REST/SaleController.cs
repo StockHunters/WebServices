@@ -50,4 +50,17 @@ public class SaleController(ISaleCommandService saleCommandService, ISaleQuerySe
         var saleResource = SaleResourceFromEntityAssembler.ToResourceFromEntity(sale);
         return CreatedAtAction(nameof(GetSaleById), new { saleId = sale.Id }, saleResource);
     }
+    
+    [HttpPut]
+    [SwaggerOperation("Update Sale", "Update an existing sale.", OperationId = "UpdateSale")]
+    [SwaggerResponse(200, "The sale was updated.", typeof(SaleResource))]
+    [SwaggerResponse(400, "The sale was not updated.")]
+    public async Task<IActionResult> UpdateSale(UpdateSaleResource resource)
+    {
+        var updateSaleCommand = UpdateSaleCommandFromResourceAssembler.ToCommandFromResource(resource);
+        var sale = await saleCommandService.Handle(updateSaleCommand);
+        if (sale is null) return BadRequest();
+        var saleResource = SaleResourceFromEntityAssembler.ToResourceFromEntity(sale);
+        return Ok(saleResource);
+    }
 }

@@ -16,4 +16,8 @@ public class ProductPriceQueryService(IProductPriceRepository productPriceReposi
     {
         return await productPriceRepository.FindByProductIdAsync(query.ProductId);
     }
+    public async Task<IEnumerable<ProductPrice>> Handle(GetAllProductPriceQuery query)
+    {
+        return await productPriceRepository.ListAsync();
+    }
 }
